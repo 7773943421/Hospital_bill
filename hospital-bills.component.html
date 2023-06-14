@@ -1,0 +1,27 @@
+
+<div class="container">
+    <div class="sidebar">
+      <ul>
+        <li (click)="selectDashboard()">Dashboard</li>
+        <li (click)="selectPatient()">Patient</li>
+        <li (click)="selectAppointment()">Appointment</li>
+        <li (click)="selectBilling()">Billing</li>
+      </ul>
+    </div>
+    <div class="content">
+      <h1>{{ selectedTab }}</h1>
+      <div *ngIf="selectedTab === 'Patient'">
+        <ul>
+          <li *ngFor="let patient of patients" (click)="showPatientBill(patient)">
+            {{ patient.name }}
+          </li>
+        </ul>
+      </div>
+      <div *ngIf="selectedTab === 'Billing' && selectedPatient">
+        <h2>{{ selectedPatient.name }}'s Bill</h2>
+        <p>Amount: {{ selectedPatient.billAmount }}</p>
+        <!-- Additional bill details and components can be added here -->
+      </div>
+      <!-- Additional content for other tabs can be added here -->
+    </div>
+  </div>
